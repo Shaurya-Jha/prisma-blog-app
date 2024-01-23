@@ -22,17 +22,17 @@ export const GET = async (req: Request, res: NextResponse) => {
     const posts = await prisma.post.findMany();
 
     return NextResponse.json(
-        // message
-        {
-            message:"Success fetching the posts from the database",
-            // will carry all the fetched posts in the posts variable
-            posts
-        },
-        // status
-        {
-            status: 200     // OK status
-        }
-    )
+      // message
+      {
+        message: "Success fetching the posts from the database",
+        // will carry all the fetched posts in the posts variable
+        posts,
+      },
+      // status
+      {
+        status: 200, // OK status
+      }
+    );
   } catch (error) {
     // sending error response as json
     return NextResponse.json(
@@ -46,11 +46,46 @@ export const GET = async (req: Request, res: NextResponse) => {
         status: 500,
       }
     );
+  } finally {
+    // close the connection
+    await prisma.$disconnect();
   }
 };
 
 export const POST = async (req: Request, res: NextResponse) => {
   try {
+    // get the data from the json body
+    const { title, description } = await req.json();
+
+    // connect to the database
+    await main();
+
+    // insert data to the database
+    const post = await prisma.post.create(
+      // pass the data to be sent to the database
+      {
+        data: {
+          // title fetched from the req,json
+          title,
+
+          // description fetched from the req.json
+          description,
+        },
+      }
+    );
+
+    return NextResponse.json(
+      // message
+      {
+        message: "Successfully inserted data into the database",
+        // data sent to the database
+        post,
+      },
+      // status code
+      {
+        status: 201, // Created status
+      }
+    );
   } catch (error) {
     // sending error response as json
     return NextResponse.json(
@@ -64,5 +99,8 @@ export const POST = async (req: Request, res: NextResponse) => {
         status: 500,
       }
     );
+  } finally {
+    // close the connection
+    await prisma.$disconnect();
   }
 };
