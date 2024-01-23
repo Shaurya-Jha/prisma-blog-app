@@ -64,8 +64,30 @@ export const GET = async (req: Request, res: NextResponse) => {
 };
 
 // PUT request for the updation of the data on the basis of the id
-export const PUT = (req: Request, res: NextResponse) => {
+export const PUT = async (req: Request, res: NextResponse) => {
   try {
+    // get id from the url
+    const id = req.url.split("/blog/")[1];
+
+    const { title, description } = await req.json();
+    await main();
+
+    const post = await prisma.post.update({
+      // data to be replaced
+      data: {
+        title,
+        description,
+      },
+      // where to update - in this id
+      where: {
+        id,
+      },
+    });
+
+    return NextResponse.json(
+      { message: "Updated successfully", post },
+      { status: 200 }
+    );
   } catch (error) {
     return NextResponse.json(
       // message
@@ -79,13 +101,18 @@ export const PUT = (req: Request, res: NextResponse) => {
     );
   } finally {
     // close the connection
-    // await prisma.$disconnect();
+    await prisma.$disconnect();
   }
 };
 
 // DELETE request for the deletion of the data on the basis of the id
-export const DELETE = (req: Request, res: NextResponse) => {
+export const DELETE = async(req: Request, res: NextResponse) => {
   try {
+    const id = req.url.split("/blog/")[1];
+    await main();
+    const post = await prisma.post.delete({where:{id}});
+
+    return NextResponse.json({message:"Delete success", post},{status: 200})
   } catch (error) {
     return NextResponse.json(
       // message
@@ -99,6 +126,6 @@ export const DELETE = (req: Request, res: NextResponse) => {
     );
   } finally {
     // close the connection
-    // await prisma.$disconnect();
+    await prisma.$disconnect();
   }
 };
