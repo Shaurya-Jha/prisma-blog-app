@@ -9,3 +9,18 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+
+// creating schema for the Post
+model Post {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  description String
+  date DateTime @default(now())
+}
+
+// sync app to database
+// run this code - npx prisma generate - after making all the models for the database
+
+// after this write - npx prisma db push
+// this will push the schema to the database
