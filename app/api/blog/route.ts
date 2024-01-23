@@ -4,7 +4,8 @@ import prisma from "@/prisma";
 import { NextResponse } from "next/server";
 
 // connection function to connect to the database
-async function main() {
+// exporting this main function so that we can use this in the other files
+export async function main() {
   try {
     // connect application to the database
     await prisma.$connect();
