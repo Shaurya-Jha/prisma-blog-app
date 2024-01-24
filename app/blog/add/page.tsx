@@ -47,18 +47,18 @@ const AddBlog = () => {
 
       <div className="w-full m-auto flex my-4">
         <div className="flex flex-col justify-center items-center m-auto">
-          <p className="text-2xl text-slate-200 font-bold p-3">
+          <p className="text-2xl text-white font-bold p-3">
             Add a wonderful blog 🎉
           </p>
 
           <form onSubmit={handleSubmit}>
             {/* title input */}
-            <input ref={titleRef} placeholder="Enter title..." type="text" className="rounded-md px-4 py-2 w-full my-2" />
+            <input ref={titleRef} placeholder="Enter title..." type="text" className="rounded-md px-4 py-2 w-full my-2 text-black" />
 
             {/* description / content input area */}
-            <textarea ref={descriptionRef} placeholder="Enter description..." className="rounded-md px-4 py-2 w-full my-2" />
+            <textarea ref={descriptionRef} placeholder="Enter description..." className="rounded-md px-4 py-2 w-full my-2 text-black" />
 
-            <button className="font-semibold px-4 py-2 shadow-xl bg-slate-200 rounded-lg m-auto hover:bg-slate-100">Submit</button>
+            <button className="font-semibold px-4 py-2 shadow-xl bg-white text-black rounded-lg m-auto hover:bg-slate-100">Submit</button>
           </form>
         </div>
       </div>  

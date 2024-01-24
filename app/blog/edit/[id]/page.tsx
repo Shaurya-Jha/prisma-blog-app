@@ -103,7 +103,7 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
       <Toaster />
       <div className="w-full m-auto flex my-4">
         <div className="flex flex-col justify-center items-center m-auto">
-          <p className="text-2xl text-slate-200 font-bold p-3">
+          <p className="text-2xl text-white font-bold p-3">
             Edit A Wonderful Blog 🎉
           </p>
 
@@ -112,22 +112,22 @@ const EditBlog = ({ params }: { params: { id: string } }) => {
               ref={titleRef}
               placeholder="Enter Title"
               type="text"
-              className="rounded-md px-4 w-full py-2 my-2 "
+              className="rounded-md px-4 w-full py-2 my-2 text-black"
             />
             <textarea
               ref={descriptionRef}
               placeholder="Enter Description"
-              className="rounded-md px-4 py-2 w-full my-2"
+              className="rounded-md px-4 py-2 w-full my-2 text-black"
             ></textarea>
             <div className="flex justify-between">
-              <button className="font-semibold px-4 py-2 shadow-xl bg-slate-200 rounded-lg m-auto hover:bg-slate-100">
+              <button className="font-semibold px-4 py-2 shadow-xl bg-white text-black rounded-lg m-auto hover:bg-slate-100">
                 Update
               </button>
             </div>
           </form>
           <button
             onClick={handleDelete}
-            className="font-semibold px-4 py-2 shadow-xl bg-red-400 rounded-lg  m-auto mt-2 hover:bg-red-500"
+            className="font-semibold px-4 py-2 shadow-xl bg-red-500 rounded-lg  m-auto mt-2 hover:bg-red-600"
           >
             Delete
           </button>
