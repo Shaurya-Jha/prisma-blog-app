@@ -33,7 +33,7 @@ export default async function Home() {
       {/* Blogs */}
       <div className="w-full flex  flex-col justify-center items-center">
         {posts?.map((post: any) => (
-          <div className="w-3/4 p-4 rounded-md mx-3 my-2 bg-white text-black flex flex-col justify-center">
+          <div className="w-3/4 p-4 rounded-md mx-3 my-2 bg-white text-black flex flex-col justify-center" key={post.id}>
             {/* Title and Action */}
             <div className="flex items-center my-3">
               <div className="mr-auto">
